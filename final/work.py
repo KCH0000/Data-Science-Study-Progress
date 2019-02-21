@@ -177,24 +177,24 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 # r2_score(y_test, test_pred)
 
 #%% Подбор параметров на стоке
-score_train = 0
-score_test = 0
-best_dep = 0
-for i in range(100, 2000, 200):
-        model = RandomForestRegressor(n_estimators=i,  max_depth=14, random_state=42, n_jobs=8)
-        model.fit(X_train, y_train)
-        train_pred = model.predict(X_train)
-        r2_train = r2_score(y_train, train_pred)
-        test_pred = model.predict(X_test)
-        r2_test = r2_score(y_test, test_pred)
-        if r2_test > score_test:
-                score_test = r2_test
-                score_train = r2_train
-                best_dep = i
-print('Лучшее {} при dep = {} (train {})'.format(score_test, best_dep, score_train))
+# score_train = 0
+# score_test = 0
+# best_dep = 0
+# for i in range(100, 2000, 200):
+#         model = RandomForestRegressor(n_estimators=i,  max_depth=12, random_state=42, n_jobs=8)
+#         model.fit(X_train, y_train)
+#         train_pred = model.predict(X_train)
+#         r2_train = r2_score(y_train, train_pred)
+#         test_pred = model.predict(X_test)
+#         r2_test = r2_score(y_test, test_pred)
+#         if r2_test > score_test:
+#                 score_test = r2_test
+#                 score_train = r2_train
+#                 best_dep = i
+# print('Лучшее {} при dep = {} (train {})'.format(score_test, best_dep, score_train))
 
 #%% Расчет на стоке
-model = RandomForestRegressor(n_estimators=1900,  max_depth=14, random_state=42, n_jobs=8)
+model = RandomForestRegressor(n_estimators=700,  max_depth=14, random_state=42, n_jobs=8)
 model.fit(X_train, y_train)
 train_pred = model.predict(X_train)
 r2_train = r2_score(y_train, train_pred)
@@ -311,5 +311,21 @@ test.loc[test['Mean_Dist_Price'].isna(), ['Mean_Dist_Price']] = test['Price_mean
 
 #%% Mean_Dist_Price дозаполнение средним показателем.
 test.loc[test['Mean_Dist_Price'].isna(), ['Mean_Dist_Price']] = test['Price_mean_m2'].mean() * test['Square']
+
+#%% Создаем dummies
+test = pd.get_dummies(test)
+
+#%% Обучаем модель на тестовых данных
+model = RandomForestRegressor(n_estimators=700,  max_depth=14, random_state=42, n_jobs=8)
+model.fit(train[fts], train['Price'])
+
+#%% Предстказываем
+price_pred = model.predict(test[fts])
+
+#%% Сохранение результата в поле Price
+test['Price'] = price_pred
+
+#%%
+test[['Id', 'Price']].to_csv('KSidorov_predictions.csv', index=None)
 
 #%%
