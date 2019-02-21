@@ -107,3 +107,6 @@ venv.bak/
 .mypy_cache/
 .idea/
 .vscode/settings.json
+final/data/test.csv
+final/data/train.csv
+Scripts/Scripts05/README.txt
