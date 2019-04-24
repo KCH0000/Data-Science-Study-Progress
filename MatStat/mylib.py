@@ -112,3 +112,12 @@ def std_deviation(array: list):
     :return float:
     """
     return sqrt(offset_dispersion(array))
+
+
+def std_unbiased(array: list):
+    """
+    Фунция получает массив значений и возвращет несмещенное среднее квадратическое отклонение
+    :param array:
+    :return float:
+    """
+    return sqrt(unbiased_dispersion(array))
