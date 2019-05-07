@@ -1,5 +1,6 @@
 from math import factorial as fl
 from math import exp, sqrt
+import numpy as np
 
 
 # ===== Lesson 1 =====
@@ -121,3 +122,16 @@ def std_unbiased(array: list):
     :return float:
     """
     return sqrt(unbiased_dispersion(array))
+
+
+# ===== Lesson 7 =====
+
+def mse_(X, y):
+    """
+    Фунция принимает X: np.array данные для обочения и y: np.array предстказываемая величина. 
+    Функция возвращает среднее квадратичное отклонение
+    """
+    if np.shape(X) != np.shape(y):
+        return false
+    n = np.shape(X)[0]
+    return np.sum((X - y)**2) / n
