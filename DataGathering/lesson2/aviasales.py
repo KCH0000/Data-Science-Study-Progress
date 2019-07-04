@@ -18,7 +18,7 @@ def get_city(find_str: str):
     return answer
 
 
-def get_prices(origin_, destination_, one_way=True):
+def get_prices(origin_, destination_, one_way=True, direct=True):
     """
     Функция получает коды IATA для мест отправления и назначения и возвращает
     Список объектов ответа API сайта aviasales с лучшими ценами
@@ -29,9 +29,10 @@ def get_prices(origin_, destination_, one_way=True):
     :return: list
     """
     url = f'http://min-prices.aviasales.ru/calendar_preload?' \
-        f'origin={origin_}&' \
-        f'destination={destination_}' \
-        f'&one_way={one_way}'
+        f'origin={origin_}' \
+        f'&destination={destination_}' \
+        f'&one_way={one_way}' \
+        f'&direct={direct}'
     get = requests.get(url)
     answer = json.loads(get.text)
     return answer['best_prices']
@@ -100,7 +101,9 @@ if __name__ == "__main__":
     destination = ask_city()
     print(f'Вы летите {get_city_vi(destination)}')
     prices = get_prices(get_iata(origin), get_iata(destination))
-    best_price = sorted(prices, key=lambda x: x['value'])[0]
-    print(f'Из {get_city_ro(origin)} {get_city_vi(destination)} '
-          f'лучше всего лететь {best_price["depart_date"]} '
-          f'по цене {best_price["value"]}')
+    best_prices = sorted(prices, key=lambda x: x['value'])[:20]
+    for best_price in best_prices:
+        print(f'Из {get_city_ro(origin)} {get_city_vi(destination)} '
+              f'лучше всего лететь {best_price["depart_date"]} '
+              f'по цене {best_price["value"]}')
+
