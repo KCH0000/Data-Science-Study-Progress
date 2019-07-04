@@ -75,7 +75,7 @@ def save_common_words_to_file(words: list, topic_name: str):
     :return:
     """
     topic_name = topic_name.replace('/\\?<>*|', '')
-    with open(topic_name+'_cw.txt', 'w') as f_output:
+    with open(topic_name+'_cw.txt', 'wt', encoding="utf-8") as f_output:
         f_output.write(f'{len(words)} часто встречающихся слов на странице '
                        f'https://ru.wikipedia.org/wiki/{topic_name}'
                        + '\n\n')
@@ -91,7 +91,7 @@ def save_page_to_file(page_: str, topic_name: str):
     :return:
     """
     topic_name = topic_name.replace('/\\?<>*|', '')
-    with open(topic_name + "_page.html", 'w') as f_output:
+    with open(topic_name + "_page.html", 'wt', encoding="utf-8") as f_output:
         f_output.write(page_)
 
 
