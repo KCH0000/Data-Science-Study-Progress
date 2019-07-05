@@ -1,4 +1,5 @@
 import requests  # для запросов на сайт
+import re  # Парсить максимальную и минимальную зарплату
 from bs4 import BeautifulSoup as bs  # Для обработки HTML
 
 
@@ -48,6 +49,26 @@ def get_max_page(html):
     return int(pages[-1]['data-page'])  # Возвращаем номер последней страницы
 
 
+def parse_compensation(compensation: str):
+    """
+    Функция получает строку с зарплатой и преобразует ее в минимальную, максимальню, а так же опеделяет валюту зарплат
+
+    :param compensation: строка, которая начинается на до, от или имеет вид min-max , в конце валюта
+    :return: минимальная запралат, максимальная, валюта
+    """
+    min_compensation, max_compensation, currency = False, False, False
+    if compensation[:2] == 'от':
+        min_compensation = int("".join(re.findall("\d+", compensation[2:])))
+    if compensation[:2] == 'до':
+        max_compensation = int("".join(re.findall("\d+", compensation[2:])))
+    if len(compensation.split('-')) == 2:
+        compensation_ = compensation.split('-')
+        min_compensation = int("".join(re.findall("\d+", compensation_[0])))
+        max_compensation = int("".join(re.findall("\d+", compensation_[1])))
+    currency = re.findall('\D+', compensation)[-1].replace(" ", "")
+    return min_compensation, max_compensation, currency
+
+
 def get_vacancies_on_page(html):
     """
     Функцич получает вакансии на страницы и формирует список вакансий, где в каждом элемете указано название вакансии
@@ -62,25 +83,29 @@ def get_vacancies_on_page(html):
         name = vacancy.find('a', {"data-qa": "vacancy-serp__vacancy-title"})
         compensation = vacancy.find("div", {"class": "vacancy-serp-item__compensation"})
         link = name['href']
+        min_compensation, max_compensation, currency = parse_compensation(compensation.string)
         list_vacancy.append({
             'name': name.string,  # Название вакансии
-            'compensation': compensation.string,  # Заработная плата
+            'min': min_compensation,  # Минимальная оплата
+            'max': max_compensation,  # Максимальная оплата
+            'currency': currency,  # Валюта вакансии
             'url': link  # Ссылка на вакансию
         })
     return list_vacancy
 
 
-def get_all_vacancies(vacancy_search: str):
+def get_all_vacancies(vacancy_search: str, lang=''):
     """
     Функция получает строку поика вакасий, и возвращает список ввсех ваканский
+    :param lang: язык прокграммирония
     :param vacancy_search: старока поиска вакансии
     :return: list объектов вакансий
     """
     all_vacancies = []
-    html = get_search_hh(vacancy_search, 0)
+    html = get_search_hh(vacancy_search, 0, lang)
     max_pages = get_max_page(html)
     for i in range(max_pages + 1):
-        html = get_search_hh(vacancy_search, i)
+        html = get_search_hh(vacancy_search, i, lang)
         vacancies_on_page = get_vacancies_on_page(html)
         all_vacancies += vacancies_on_page
     return all_vacancies
@@ -88,18 +113,23 @@ def get_all_vacancies(vacancy_search: str):
 
 def save_vacancies_to_file(vacancies: list):
     """
-    Функсция сохраняет список вакансий а форматированом виде в фаил
+    Функсция сохраняет список вакансий а форматированом виде в фаил с разделителем : для удобной загрузки
     :param vacancies: список объектов вакансий
     :return: none
     """
     with open('output.txt', 'wt', encoding='utf-8') as output_file:
         for vacancy in vacancies:
-            output_file.write(f'{vacancy["name"]} - {vacancy["compensation"]} \n')
-            output_file.write(f'{vacancy["url"]} \n\n')
+            output_file.write(f'{vacancy["name"]}:'
+                              f'{vacancy["min"]}:'
+                              f'{vacancy["max"]}:'
+                              f'{vacancy["currency"]}:'
+                              f'{vacancy["url"]} \n')
+            # output_file.write(f'{vacancy["url"]} \n\n')
 
 
 if __name__ == "__main__":
-    vacancy_name = 'Программист Python'
-    all_ = get_all_vacancies(vacancy_name)
+    vacancy_name = 'Программист'
+    lang_ = "Python"
+    all_ = get_all_vacancies(vacancy_name, lang_)
     print(len(all_))
     save_vacancies_to_file(all_)
