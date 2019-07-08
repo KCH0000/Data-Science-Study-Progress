@@ -119,11 +119,9 @@ def save_vacancies_to_file(vacancies: list):
     """
     with open('output.txt', 'wt', encoding='utf-8') as output_file:
         for vacancy in vacancies:
-            output_file.write(f'{vacancy["name"]}:'
-                              f'{vacancy["min"]}:'
-                              f'{vacancy["max"]}:'
-                              f'{vacancy["currency"]}:'
-                              f'{vacancy["url"]} \n')
+            line = [vacancy["name"], vacancy["min"], vacancy["max"], vacancy["currency"], vacancy["url"]]
+            line_to_write = "\t".join(str(x) for x in line)
+            output_file.write(line_to_write + "\n")
             # output_file.write(f'{vacancy["url"]} \n\n')
 
 
