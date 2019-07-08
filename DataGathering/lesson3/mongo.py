@@ -5,7 +5,8 @@ from urllib.parse import quote_plus  # Форматирование пользо
 DB_URL = 'localhost'
 DB_USERNAME = 'root'
 DB_PASSWORD = 'root'
-SAVE_TO_DB = False
+SAVE_TO_DB = False  # True - программа будет читать фаил и сохранять в базу. False - будут работать тольк чтение
+VAL = {'USD': 63, 'EUR': 72, 'руб.': 1}  # Курсы
 
 
 def connect_mongodb(db):
@@ -23,27 +24,30 @@ def connect_mongodb(db):
 
 def load_hh_data_from_file(file):
     data = []
-    with open(file, 'rt', encoding='utf-8') as input_file:
-        for line in input_file:
-            i = 0
-            if len(line.split('\t')) != 5:
-                print(f"error in line {i}\n")
-            else:
-                parse_line = line.split('\t')
-                vacancy = {
-                    'name': parse_line[0],
-                    'mix': int(parse_line[1]) if parse_line[1] not in ('True', 'False') else bool(parse_line[1]),
-                    'max': int(parse_line[2]) if parse_line[2] not in ('True', 'False') else bool(parse_line[2]),
-                    'currency': parse_line[3],
-                    'url': parse_line[4].replace('\n', '')
-                }
-                data.append(vacancy)
-                i += 1
-    return data
+    try:
+        with open(file, 'rt', encoding='utf-8') as input_file:
+            for line in input_file:
+                i = 0
+                if len(line.split('\t')) != 5:
+                    print(f"File: error in line {i}\n")
+                else:
+                    parse_line = line.split('\t')
+                    vacancy = {
+                        'name': parse_line[0],
+                        'min': int(parse_line[1]),
+                        'max': int(parse_line[2]),
+                        'currency': parse_line[3],
+                        'url': parse_line[4].replace('\n', '')
+                    }
+                    data.append(vacancy)
+                    i += 1
+        return data
+    except IOError as e:
+        print('File: ошибка файла ', e)
+        return False
 
 
-def save_hh_to_mongodb(db, vacancies):
-    coll_name = 'vacancies'
+def save_hh_to_mongodb(db, coll_name, vacancies):
     try:
         coll = db[coll_name]
     except mongo_e.CollectionInvalid:
@@ -60,9 +64,30 @@ def save_hh_to_mongodb(db, vacancies):
         print(f'Mongo: ошибка {e}')
 
 
+def get_vacancies_more(db, coll_name, compensation):
+    vacancies = []
+    try:
+        coll = db[coll_name]
+    except mongo_e.CollectionInvalid:
+        print(f'Mongo: {coll_name} - коллекция недоступна')
+        return False
+    for currency, curs in VAL.items():
+        for vacancy in coll.find({'$and': [
+                                    {'currency': currency},
+                                    {'$or': [
+                                        {'max': 0},
+                                        {'max': {'$gt': compensation/curs}}
+                                    ]}
+        ]}):
+            vacancies.append(vacancy)
+    return vacancies
+
+
 if __name__ == '__main__':
     db_ = connect_mongodb('db')
-    vacancies_db = db_['vacancies']
     if SAVE_TO_DB:
         vacancies_ = load_hh_data_from_file('output.txt')
-        save_hh_to_mongodb(db_, vacancies_)
+        if vacancies_:
+            save_hh_to_mongodb(db_, 'vacancies', vacancies_)
+    for x in get_vacancies_more(db_, 'vacancies', 300000):
+        print(x)

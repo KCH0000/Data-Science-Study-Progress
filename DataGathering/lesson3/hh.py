@@ -56,7 +56,7 @@ def parse_compensation(compensation: str):
     :param compensation: строка, которая начинается на до, от или имеет вид min-max , в конце валюта
     :return: минимальная запралат, максимальная, валюта
     """
-    min_compensation, max_compensation, currency = False, False, False
+    min_compensation, max_compensation, currency = 0, 0, False
     if compensation[:2] == 'от':
         min_compensation = int("".join(re.findall("\d+", compensation[2:])))
     if compensation[:2] == 'до':
