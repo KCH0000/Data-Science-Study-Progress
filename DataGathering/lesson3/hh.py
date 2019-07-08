@@ -82,7 +82,7 @@ def get_vacancies_on_page(html):
     for vacancy in vacancies:
         name = vacancy.find('a', {"data-qa": "vacancy-serp__vacancy-title"})
         compensation = vacancy.find("div", {"class": "vacancy-serp-item__compensation"})
-        link = name['href']
+        link = name['href'].split('?')[0]
         min_compensation, max_compensation, currency = parse_compensation(compensation.string)
         list_vacancy.append({
             'name': name.string,  # Название вакансии
