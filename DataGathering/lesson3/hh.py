@@ -66,6 +66,8 @@ def parse_compensation(compensation: str):
         min_compensation = int("".join(re.findall("\d+", compensation_[0])))
         max_compensation = int("".join(re.findall("\d+", compensation_[1])))
     currency = re.findall('\D+', compensation)[-1].replace(" ", "")
+    if currency == 'руб.':
+        currency = 'RUR'
     return min_compensation, max_compensation, currency
 
 
