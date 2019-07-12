@@ -114,7 +114,7 @@ def save_currencies_rates_to_mongo(db, coll_name, currencies_rates):
 def znal_bi_postelil_bi_solomku(db, coll_name, currency_name: str,
                                 start_date, stop_date=datetime.datetime.today().strftime("%Y-%m-%d")):
     """
-    функция приченяет боль и страдание для всех кто ее запускает
+    Функция причиняет боль и страдание для всех кто ее запускает
 
     Функция получает из базы максимальные и минимальные курсы для указанной валюты за период. Если данных в базе
     не хватает, то данные предварительно загружаются с сайта ЦБ РФ
