@@ -110,3 +110,4 @@ venv.bak/
 final/data/test.csv
 final/data/train.csv
 Scripts/Scripts05/README.txt
+/Data_analytics/user_data.csv
