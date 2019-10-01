@@ -1,6 +1,10 @@
 # User Files
+*lessons_data*
+*datasets*
+*Untitled*
 scripts/
 ds_env/
+orders_20190822.csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
