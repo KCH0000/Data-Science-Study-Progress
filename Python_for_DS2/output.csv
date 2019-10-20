@@ -1,0 +1,114 @@
+
+Number of Credit Problems_3,0.4925053533190578,True
+Number of Open Accounts,0.49896049896049893,True
+Months since last delinquent_dummy_5,0.500523560209424,True
+Months since last delinquent_dummy_4,0.49688149688149685,False
+Months since last delinquent_dummy_2,0.49473684210526314,False
+Bankruptcies_bin,0.49473684210526314,False
+Number of Credit Problems_3,0.4925053533190578,True
+Number of Open Accounts,0.49896049896049893,True
+Months since last delinquent_dummy_5,0.500523560209424,True
+Bankruptcies_bin,0.500523560209424,False
+Number of Credit Problems_3,0.4925053533190578,True
+Number of Open Accounts,0.49896049896049893,True
+Months since last delinquent_dummy_5,0.500523560209424,True
+Years of Credit History,0.49688149688149685,False
+Number of Credit Problems_3,0.4925053533190578,True
+Number of Open Accounts,0.49896049896049893,True
+Months since last delinquent_dummy_5,0.500523560209424,True
+Monthly Debt,0.48231511254019294,False
+Purpose_2,0.5031315240083507,True
+Purpose_2,0.5031315240083507,True
+Bankruptcies_2,0.5026288117770767,False
+Purpose_2,0.5031315240083507,True
+Purpose_5,0.5031315240083507,False
+Purpose_5,0.5031315240083507,True
+Purpose_0,0.5031315240083507,False
+Purpose_5,0.5031315240083507,True
+Purpose_0,0.5031315240083507,False
+Number of Credit Problems_0,0.5026178010471204,False
+Purpose_0,0.5031315240083507,True
+Months since last delinquent_dummy_1,0.5031315240083507,False
+Purpose_1,0.4999999999999999,True
+Months since last delinquent,0.4915611814345992,True
+Months since last delinquent_dummy_6,0.4979166666666666,True
+Months since last delinquent_dummy_3,0.49738766980146293,True
+Number of Credit Problems_1,0.5063025210084033,True
+Number of Credit Problems_1,0.5063025210084033,True
+Years in current job,0.5058448459086079,False
+Months since last delinquent_dummy_0,0.5063025210084033,True
+Current Credit Balance,0.5072463768115941,True
+Current Credit Balance,0.5072463768115941,True
+Bankruptcies_0,0.5077399380804953,True
+Bankruptcies_1,0.5077399380804953,True
+Bankruptcies_bin,0.5077399380804953,True
+Bankruptcies_0,0.5051759834368529,True
+Bankruptcies_0,0.504149377593361,True
+Bankruptcies_0,0.5066941297631308,True
+Bankruptcies_0,0.5010351966873705,True
+Bankruptcies_0,0.501039501039501,True
+Current Credit Balance,0.5072463768115941,True
+Bankruptcies_0,0.5077399380804953,True
+Bankruptcies_0,0.49685534591194963,True
+Bankruptcies_0,0.5051975051975052,True
+Bankruptcies_0,0.5078369905956113,True
+Bankruptcies_0,0.4894957983193278,True
+Bankruptcies_0,0.5083333333333333,True
+Bankruptcies_0,0.5078043704474505,True
+Bankruptcies_0,0.5083333333333333,True
+Bankruptcies_0,0.5079030558482612,True
+Bankruptcies_0,0.5057232049947972,True
+Bankruptcies_0,0.5083333333333333,True
+Bankruptcies_0,0.5083333333333333,True
+Bankruptcies_0,0.4602510460251046,True
+Bankruptcies_0,0.4954128440366973,True
+Bankruptcies_0,0.5083333333333333,True
+Bankruptcies_0,0.46892808683853454,True
+Bankruptcies_0,0.32883369330453566,True
+Bankruptcies_0,0.5021097046413502,True
+Home Ownership,0.4834224598930481,True
+Number of Credit Problems_4,0.4817204301075269,False
+Purpose_3,0.48992576882290567,True
+Tax Liens,0.48854961832061067,False
+Annual Income,0.49337410805300713,True
+Number of Credit Problems_0,0.4908722109533469,False
+Number of Open Accounts,0.4864300626304802,False
+Years of Credit History,0.4892966360856269,True
+Number of Credit Problems_3,0.4892966360856269,False
+Bankruptcies_2,0.4892966360856269,False
+Monthly Debt,0.49375,True
+Months since last delinquent_dummy_2,0.49636552440290754,True
+Purpose_2,0.49214659685863876,False
+Purpose_0,0.4947589098532495,True
+Months since last delinquent_dummy_1,0.49685534591194963,True
+Current Credit Balance,0.501039501039501,True
+Purpose_1,0.49435897435897436,False
+Months since last delinquent_dummy_4,0.49947970863683655,True
+Months since last delinquent,0.50104821802935,True
+Maximum Open Credit,0.4829857299670692,True
+Annual Income,0.49101796407185627,True
+Purpose_3,0.49600000000000005,True
+Years of Credit History,0.49548645937813446,False
+Tax Liens,0.49897750511247435,True
+Number of Credit Problems_0,0.4895104895104895,False
+Number of Open Accounts,0.4989733059548254,True
+Number of Credit Problems_3,0.49698189134808846,False
+Number of Credit Problems_4,0.49698189134808846,False
+Monthly Debt,0.5005005005005004,True
+Months since last delinquent_dummy_2,0.5005005005005004,False
+Purpose_2,0.5010020040080161,True
+Months since last delinquent_dummy_4,0.5050100200400801,True
+Purpose_0,0.502994011976048,False
+Purpose_1,0.49799999999999994,False
+Current Credit Balance,0.5074925074925075,True
+Bankruptcies_2,0.5074925074925075,False
+Bankruptcies_bin2,0.5074925074925075,False
+Months since last delinquent_dummy_1,0.5074925074925075,False
+Months since last delinquent_dummy_3,0.5030060120240482,False
+Months since last delinquent,0.49848637739656915,False
+Years in current job,0.5098039215686274,True
+Months since last delinquent_dummy_0,0.5098039215686274,False
+Months since last delinquent_dummy_5,0.5098039215686274,False
+Bankruptcies_1,0.5,False
+Bankruptcies_bin,0.4963805584281282,False
+Bankruptcies_0,0.4963805584281282,False

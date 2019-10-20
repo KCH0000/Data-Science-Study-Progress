@@ -1,0 +1,25 @@
+1,2,3
+Term,0.4014598540145985,True
+Current Loan Amount,0.42789598108747046,True
+Credit Score,0.45948945615982245,True
+Maximum Open Credit,0.4726477024070022,True
+Home Ownership,0.48283261802575106,True
+Annual Income,0.4944048830111903,True
+Purpose_4,0.49848024316109424,True
+Number of Credit Problems_3,0.49342770475227504,False
+Months since last delinquent_dummy_5,0.49246231155778897,False
+Months since last delinquent_dummy_4,0.49744114636642783,True
+Months since last delinquent_dummy_2,0.49595141700404854,False
+Purpose_2,0.49442755825734547,False
+Number of Credit Problems_0,0.4979757085020243,True
+Months since last delinquent_dummy_1,0.4979757085020243,False
+Purpose_1,0.49646821392532803,False
+Months since last delinquent,0.49949031600407745,True
+Months since last delinquent_dummy_6,0.49949031600407745,False
+Months since last delinquent_dummy_3,0.49746192893401014,False
+Number of Credit Problems_1,0.5045592705167173,True
+Years in current job,0.5030549898167007,False
+Bankruptcies,0.5030549898167007,False
+Months since last delinquent_dummy_0,0.5030549898167007,False
+Current Credit Balance,0.506198347107438,True
+Bankruptcies_bin,0.506198347107438,False
