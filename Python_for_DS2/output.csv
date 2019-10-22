@@ -112,3 +112,12 @@ Months since last delinquent_dummy_5,0.5098039215686274,False
 Bankruptcies_1,0.5,False
 Bankruptcies_bin,0.4963805584281282,False
 Bankruptcies_0,0.4963805584281282,False
+Maximum Open Credit,0.4829857299670692,True
+Annual Income,0.49101796407185627,True
+Purpose_3,0.49600000000000005,True
+Years of Credit History,0.5015228426395939,True
+Tax Liens,0.4994964753272911,False
+Number of Credit Problems_0,0.4954128440366972,False
+Number of Open Accounts,0.49899396378269617,True
+Number of Credit Problems_3,0.4964824120603016,False
+Number of Credit Problems_4,0.4964824120603016,False
