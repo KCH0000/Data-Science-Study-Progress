@@ -5,6 +5,7 @@
 scripts/
 ds_env/
 orders_20190822.csv
+*catboost_info*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
